@@ -1,0 +1,15 @@
+.card .card-body{
+    padding:20px;
+}
+
+.col-md-9 .card.bg-secondary.text-light{
+    padding:3% 5%;
+}
+
+.col-md-9 .card:first-child{
+    margin-bottom:2rem;
+}
+
+.delete-form{
+    display:inline;
+}
