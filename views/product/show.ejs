@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <p class="lead">Yelpcamp</p>
+            <p class="lead">ProductNow</p>
             <div class="list-group">
                 <li class="list-group-item active">Info 1</li>
                 <li class="list-group-item">Info 2</li>
@@ -12,17 +12,17 @@
         </div>
         <div class="col-md-9">
             <div class="card">
-                <img class="img-fluid" src="<%=campground.image%>">
+                <img class="img-fluid" src="<%=product.image%>">
                 <div class="card-body">
-                    <h4 class="float-right">$<%=campground.price%>/night</h4>
-                    <h4 class="card-title"><a href="#"><%=campground.name%></a></h4>
-                    <p class="card-text"><%=campground.description %></p>
+                    <h4 class="float-right">$<%=product.price%>/night</h4>
+                    <h4 class="card-title"><a href="#"><%=product.name%></a></h4>
+                    <p class="card-text"><%=product.description %></p>
                     <p class="card-text">
-                        <em>Submitted by: <%=campground.author.username%></em>
+                        <em>Submitted by: <%=product.author.username%></em>
                     </p>
-                    <% if(currentUser && campground.author.id.equals(currentUser._id)) { %> <!-- short circuit evaluation-->
-                    <a href="/campgrounds/<%=campground._id%>/edit" class="btn btn-warning">Edit Post</a>
-                    <form class="delete-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                    <% if(currentUser && product.author.id.equals(currentUser._id)) { %> <!-- short circuit evaluation-->
+                    <a href="/product/<%=product._id%>/edit" class="btn btn-warning">Edit Post</a>
+                    <form class="delete-form" action="/product/<%=product._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
                     </form>
                     <% } %> 
@@ -32,10 +32,10 @@
             <!-- comments -->
             <div class="card bg-secondary text-light">
                 <div class="text-right">
-                    <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>/comments/new">Add new Comment</a> 
+                    <a class="btn btn-primary" href="/product/<%=product._id%>/comments/new">Add new Comment</a> 
                 </div>
                 <hr style="border-color:azure">
-                <% campground.comments.forEach(function(comment){ %>
+                <% product.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
                             <span class="float-right">10 days ago</span>
@@ -44,11 +44,11 @@
 
                             <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                                 <a class="btn btn-sm btn-warning" 
-                                href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">
+                                href="/product/<%=product._id%>/comments/<%=comment._id%>/edit">
                                     Edit
                                 </a>
                                 <form   class="delete-form" method="POST" 
-                                        action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE">
+                                        action="/product/<%=product._id%>/comments/<%=comment._id%>?_method=DELETE">
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </form>
                             <% } %>

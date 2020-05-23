@@ -8,20 +8,20 @@ var express         = require("express"),
     LocalStrategy   = require("passport-local"),
     methodOverride  = require("method-override"),
     User            = require("./models/user"),
-    Campground      = require("./models/campground"),
+    Product          = require("./models/product"),
     Comment         = require("./models/comment"),
     seedDB          = require("./seeds");
 
 // requiring routes // 
-var campgroundRoutes    = require("./routes/campgrounds"),
+var productRoutes    = require("./routes/product"),
     commentRoutes       = require("./routes/comments"),
     indexRoutes          = require("./routes/index"); 
 
 // App Configurations
 mongoose.set('useUnifiedTopology', true);
 // mongoose.connect(prcoess.env.DATABASEURL,{useNewUrlParser:true}); // uncomment to use local db. 
-// "mongodb://localhost/yelpcamp"
-mongoose.connect("mongodb://localhost/yelpcamp",
+// "mongodb://localhost/productnow"
+mongoose.connect("mongodb://localhost/productnow",
     { 
         useNewUrlParser: true,
         useCreateIndex : true
@@ -49,7 +49,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//seedDB(); // seed database into campground
+//seedDB(); // seed database into product
 
 
 // runs this function on every page, to check if user is logged in. 
@@ -62,9 +62,9 @@ app.use(function(req,res,next){
 
 // Router connections 
 app.use(indexRoutes);
-app.use("/campgrounds",campgroundRoutes);
-app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/product",productRoutes);
+app.use("/product/:id/comments",commentRoutes);
 
 app.listen(3000, function(){
-    console.log("yelpcamp server has started");
+    console.log("productnow server has started");
 });

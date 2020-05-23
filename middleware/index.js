@@ -1,7 +1,6 @@
 // all middleware goes here
-var Campground = require("../models/campground");
+var Product = require("../models/product");
 var Comment = require("../models/comment");
-
 
 var middlewareObject = {
     isLoggedIn : function(req,res,next){
@@ -13,15 +12,15 @@ var middlewareObject = {
         res.redirect("/login");
     },
 
-    checkCampgroundOwnership : function(req, res, next){
+    checkProductOwnership : function(req, res, next){
         if(req.isAuthenticated()){
-            Campground.findById(req.params.id, function(err,foundCampground){
-                if(err || !foundCampground){
-                    req.flash("error","Campground not found")
+            Product.findById(req.params.id, function(err,foundProduct){
+                if(err || !foundProduct){
+                    req.flash("error","Product not found")
                     res.redirect("back");
                 }
                 else{
-                    if(foundCampground.author.id.equals(req.user._id)){  //Do this to compare user ids
+                    if(foundProduct.author.id.equals(req.user._id)){  //Do this to compare user ids
                         next();
                     }
                     else{
